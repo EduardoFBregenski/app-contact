@@ -1,0 +1,14 @@
+<h1>Criar novo contato.</h1>
+
+<%= form_with(model: @contact, url: contacts_path) do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+
+    <%= form.submit 'Enviar' %>
+<% end %>
