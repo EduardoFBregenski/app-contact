@@ -6,6 +6,7 @@ RSpec.feature "Contacts", type: :feature do
     visit '/'
 
     expect(page).to have_content("Lista de contatos.")
+    expect(page).to have_link("Criar novo contato", href: new_contact_path)
     expect(page).to have_content(contact.name)
     expect(page).to have_content(contact.phone)
   end
