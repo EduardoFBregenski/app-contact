@@ -1,47 +1,82 @@
 <%= form_with(model: @contact, local: true) do |form| %>
-    <% if @contact.errors.any? %>
-      <div class="flash-alert">
-        <strong>Erro ao criar o contato:</strong>
-        <ul>
-          <% @contact.errors.each do |message| %>
-            <li><%= message.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  
-      <%= form.label :name %>
-      <%= form.text_field :name %>
-      
-      <%= form.label :email %>
-      <%= form.text_field :email %>
-  
-      <%= form.label :phone %>
-      <%= form.text_field :phone %>
-  
-      <%= form.fields_for :address do |address_form| %>
-        <%= address_form.label :cep %>
-        <%= address_form.text_field :cep %>
-  
-        <%= address_form.label :street %>
-        <%= address_form.text_field :street %>
-    
-        <%= address_form.label :number %>
-        <%= address_form.text_field :number %>
-  
-        <%= address_form.label :complement %>
-        <%= address_form.text_field :complement %>
-  
-        <%= address_form.label :neighborhood %>
-        <%= address_form.text_field :neighborhood %>
-  
-        <%= address_form.label :city %>
-        <%= address_form.text_field :city %>
-  
-        <%= address_form.label :uf %>
-        <%= address_form.text_field :uf %>
-  
-      <% end %>
-  
-      <%= form.submit 'Enviar' %>
+  <% if @contact.errors.any? %>
+    <div class="flash-alert">
+      <strong>Erro ao criar o contato:</strong>
+      <ul>
+        <% @contact.errors.each do |message| %>
+          <li><%= message.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+
+    <%= form.fields_for :address do |address_form| %>
+      <%= address_form.label :cep %>
+      <%= address_form.text_field :cep %>
+
+      <%= address_form.label :street %>
+      <%= address_form.text_field :street %>
+  
+      <%= address_form.label :number %>
+      <%= address_form.text_field :number %>
+
+      <%= address_form.label :complement %>
+      <%= address_form.text_field :complement %>
+
+      <%= address_form.label :neighborhood %>
+      <%= address_form.text_field :neighborhood %>
+
+      <%= address_form.label :city %>
+      <%= address_form.text_field :city %>
+
+      <%= address_form.label :uf %>
+      <%= address_form.text_field :uf %>
+
+    <% end %>
+
+    <%= form.submit 'Enviar' %>
+<% end %>
+
+<script> 
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    const cepInput = document.getElementById("contact_address_attributes_cep");
+
+    cepInput.addEventListener("blur", function(event) {
+
+    debugger
+
+      const zipCode = event.target.value;
+      if (zipCode.length === 8) {
+        const formData = new FormData();
+        formData.append('contact[address_attributes][cep]', zipCode);
+
+        fetch('/search_address', {
+          method: 'POST',
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (!data.error) {
+              console.log("teste")
+            }
+          })
+          .catch((error) => {
+            console.error("Erro na requisição", error);
+        });
+      }
+    })
+
+  })
+
+</script>

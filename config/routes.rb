@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "contacts#index"
   resources :contacts
+  post 'search_address', to: 'contacts#search_address'
 end
