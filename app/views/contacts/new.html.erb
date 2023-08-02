@@ -1,25 +1,3 @@
 <h1>Criar novo contato.</h1>
 
-<%= form_with(model: @contact, url: contacts_path) do |form| %>
-  <% if @contact.errors.any? %>
-    <div class="flash-alert">
-      <strong>Erro ao criar o contato:</strong>
-      <ul>
-        <% @contact.errors.each do |message| %>
-          <li><%= message.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-    
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-
-    <%= form.submit 'Enviar' %>
-<% end %>
+<%= render "form", contact: @contact %>

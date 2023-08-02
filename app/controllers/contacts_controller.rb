@@ -2,17 +2,19 @@ class ContactsController < ApplicationController
     before_action :set_contact, only: %i[show edit]
 
     def index
-        @contacts = Contact.all
+      @contacts = Contact.all
     end
 
     def show
     end
 
     def new
-        @contact = Contact.new
+      @contact = Contact.new
+      @contact.build_address
     end
 
     def edit
+      @contact.build_address
     end
 
     def create
