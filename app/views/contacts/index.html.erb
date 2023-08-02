@@ -4,4 +4,8 @@
 <% @contacts.each do |contact| %>
     <%= contact.name %>
     <%= contact.phone %>
+
+    <%= link_to 'Ver detalhes', contact_path(contact) %>
+    <%= link_to 'Editar', edit_contact_path(contact) %>
+   
 <% end %>
