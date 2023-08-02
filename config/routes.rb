@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "contacts#index"
-  resources :contacts, only: [:new, :create]
+  resources :contacts
 end
