@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
     before_action :set_contact, only: %i[show edit]
+    skip_before_action :verify_authenticity_token, only: [:search_address]
 
     def index
       @contacts = Contact.all
@@ -32,7 +33,9 @@ class ContactsController < ApplicationController
     end
 
     def search_address
-      ::Addresses::AddressService.new(payload: params[:cep]).call
+      result = ::Addresses::QueryAddressService.new(payload: params[:contact][:address_attributes][:cep].gsub("-", "")).call
+
+      render json: result
     end
 
     private
@@ -42,6 +45,6 @@ class ContactsController < ApplicationController
     end
 
     def contact_params
-      params.require(:contact).permit(:name, :email, :phone, :cep, address_attributes: [:street, :number, :neighborhood, :city, :uf, :cep] )
+      params.require(:contact).permit(:name, :email, :phone, :cep, address_attributes: [:street, :number, :neighborhood, :city, :uf, :cep, :complement] )
     end
 end

@@ -51,32 +51,39 @@
   document.addEventListener("DOMContentLoaded", function () {
 
     const cepInput = document.getElementById("contact_address_attributes_cep");
+    const streetInput = document.getElementById("contact_address_attributes_street");
+    const neighborhoodInput = document.getElementById("contact_address_attributes_neighborhood");
+    const cityInput = document.getElementById("contact_address_attributes_city");
+    const ufInput = document.getElementById("contact_address_attributes_uf");
 
     cepInput.addEventListener("blur", function(event) {
-
-    debugger
 
       const zipCode = event.target.value;
       if (zipCode.length === 8) {
         const formData = new FormData();
         formData.append('contact[address_attributes][cep]', zipCode);
 
-        fetch('/search_address', {
+        fetch('<%= search_address_path %>', {
           method: 'POST',
           body: formData,
         })
           .then((response) => response.json())
           .then((data) => {
-            if (!data.error) {
-              console.log("teste")
+            if (!data.body.erro) {
+              cepInput.value = data.body.cep;
+              streetInput.value = data.body.logradouro;
+              neighborhoodInput.value = data.body.bairro;
+              cityInput.value = data.body.localidade;
+              ufInput.value = data.body.uf;
+            } else {
+              alert("CEP não encontrado")
             }
           })
-          .catch((error) => {
-            console.error("Erro na requisição", error);
+        .catch((error) => {
+          console.error("Erro na requisição", error);
         });
       }
     })
-
   })
 
 </script>
