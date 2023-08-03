@@ -10,40 +10,80 @@
     </div>
   <% end %>
 
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-    
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+  <div class="form-floating mb-3">
+    <%= form.label :name, for:"contact_name" %>
+    <%= form.text_field :name, type:"text", class:"form-control",  placeholder:"Nome" %>
+  </div>
 
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
+  <div class="form-floating mb-3">
+    <%= form.label :email, for:"contact_email" %>
+    <%= form.text_field :email, type:"email", class:"form-control", placeholder:"E-mail" %>
+  </div>
 
-    <%= form.fields_for :address do |address_form| %>
-      <%= address_form.label :cep %>
-      <%= address_form.text_field :cep %>
-
-      <%= address_form.label :street %>
-      <%= address_form.text_field :street %>
+  <div class="form-floating mb-3">
+    <%= form.label :phone, for:"contact_phone" %>
+    <%= form.text_field :phone, type:"text", class:"form-control", placeholder:"Telefone" %>
+  </div>  
   
-      <%= address_form.label :number %>
-      <%= address_form.text_field :number %>
+  <%= form.fields_for :address do |address_form| %>
 
-      <%= address_form.label :complement %>
-      <%= address_form.text_field :complement %>
+    <h3>Endereço</h3>
 
-      <%= address_form.label :neighborhood %>
-      <%= address_form.text_field :neighborhood %>
+    <div class="form-floating mb-3">
+      <%= address_form.label :cep, for:"contact_address_attributes_cep" %>
+      <%= address_form.text_field :cep, type:"text", class:"form-control", placeholder:"CEP" %>
+    </div> 
 
-      <%= address_form.label :city %>
-      <%= address_form.text_field :city %>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-floating mb-3">
+          <%= address_form.label :street, for:"contact_address_attributes_street" %>
+          <%= address_form.text_field :street, type:"text", class:"form-control", placeholder:"Logradouro" %>
+        </div> 
+      </div>
 
-      <%= address_form.label :uf %>
-      <%= address_form.text_field :uf %>
+      <div class="col-lg-3">
+        <div class="form-floating mb-3">
+          <%= address_form.label :number, for:"contact_address_attributes_number" %>
+          <%= address_form.text_field :number, type:"text", class:"form-control", placeholder:"Número" %>
+        </div>
+      </div>
 
-    <% end %>
+      <div class="col-lg-3">
+        <div class="form-floating mb-3">
+          <%= address_form.label :complement, for:"contact_address_attributes_complement" %>
+          <%= address_form.text_field :complement, type:"text", class:"form-control", placeholder:"Complemento" %>
+        </div>
+      </div>
+    </div> 
 
-    <%= form.submit 'Enviar' %>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="form-floating mb-3">
+          <%= address_form.label :neighborhood, for:"contact_address_attributes_neighborhood" %>
+          <%= address_form.text_field :neighborhood, type:"text", class:"form-control", placeholder:"Bairro" %>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="form-floating mb-3">
+          <%= address_form.label :city, for:"contact_address_attributes_city" %>
+          <%= address_form.text_field :city, type:"text", class:"form-control", placeholder:"Cidade" %>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="form-floating mb-3">
+          <%= address_form.label :uf, for:"contact_address_attributes_uf" %>
+          <%= address_form.text_field :uf, type:"text", class:"form-control", placeholder:"Estado" %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
+  <%= form.submit 'Enviar', class:"btn btn-primary" %>
+  <%= link_to 'Voltar', contacts_path, class:"btn btn-secondary" %>
 <% end %>
 
 <script> 
