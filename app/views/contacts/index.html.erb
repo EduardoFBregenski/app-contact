@@ -9,7 +9,8 @@
       <th scope="col">ID</th>
       <th scope="col">Nome</th>
       <th scope="col">Telefone</th>
-      <th scope="col">Açoes</th>
+      <th scope="col">CEP</th>
+      <th class="text-end" scope="col">Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -18,7 +19,8 @@
       <td><%= contact.id %></td>
       <td><%= contact.name %></td>
       <td><%= contact.phone %></td>
-      <td><%= link_to 'Ver detalhes', contact_path(contact),  class:"btn btn-info" %>
+      <td><%= contact.address ? format_cep(contact.address.cep) : '' %></td>
+      <td class="text-end"><%= link_to 'Ver detalhes', contact_path(contact),  class:"btn btn-info" %>
       <%= link_to 'Editar', edit_contact_path(contact), class:"btn btn-secondary" %></td>
     </tr>
     <% end %>

@@ -1,1 +1,18 @@
-<%=  @contact.inspect %>
+<div class="row">
+  <div class="col-lg-12 text-center">
+    <%= image_tag 'profile.jpg', width: '220px' %>
+    <h1><%= @contact.name %></h1>
+    <p><%= @contact.email %></p>
+    <p><%= @contact.phone %></p>
+    <h4>Endereço</h4>
+
+    <% if @contact.address %>
+        <p><%= @contact.address.street %>, <%= @contact.address.number %></p>
+        <p><%= @contact.address.neighborhood %> - <%= @contact.address.city %></p>
+        <p>CEP: <%= format_cep(@contact.address.cep) %></p>
+    <% else %>
+        <p>Endereço não disponivel</p>
+    <% end %>
+    <%= link_to 'Voltar', contacts_path, class:"btn btn-secondary" %>
+  </div>
+</div>
