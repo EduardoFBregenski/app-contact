@@ -21,5 +21,6 @@ module AppContact
 
     config.autoload_paths += %W(#{config.root}/app/services)
     config.autoload_paths += %W(#{config.root}/lib)
+    config.i18n.default_locale = :'pt-BR'
   end
 end

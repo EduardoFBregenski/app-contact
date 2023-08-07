@@ -1,0 +1,21 @@
+en:
+  activerecord:
+    models:
+      contact: "Contact"
+    attributes:
+      contact:
+        name: "Name"
+        email: "E-mail"
+        phone: "Phone"
+    errors:
+      models:
+        contact:
+          attributes:
+            name:
+              blank: "Can't be blank"
+            phone:
+              blank: "Can't be blank"
+  json:
+    contact_created_success: "Contact created successfully."
+    contact_updated_success: "Contact updated successfully."
+    contact_destroyed_success: "Contact deleted successfully."

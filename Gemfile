@@ -33,6 +33,11 @@ gem 'pry'
 
 gem 'turbolinks'
 
+# I18n
+gem 'i18n', '~> 1.14', '>= 1.14.1'
+
+gem 'devise'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
