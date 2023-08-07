@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-    before_action :set_contact, only: %i[show edit]
+    before_action :set_contact, only: %i[show edit destroy]
     skip_before_action :verify_authenticity_token, only: [:search_address]
 
     def index
@@ -29,6 +29,15 @@ class ContactsController < ApplicationController
           format.html { render :new, status: :unprocessable_entity }
           format.json { render json: @contact.errors, status: :unprocessable_entity }
         end
+      end
+    end
+
+    def destroy
+      @contact.destroy
+        
+      respond_to do |format|
+        format.html { redirect_to contacts_url }
+        format.json { head :no_content }
       end
     end
 
