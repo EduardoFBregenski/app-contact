@@ -1,0 +1,27 @@
+en:
+  activerecord:
+    models:
+      address: "Adresse"
+    attributes:
+      address:
+        uf: "État"
+        city: "Ville"
+        street: "Rue"
+        cep: "Code ZIP"
+        number: "Numéro"
+    errors:
+      models:
+        address:
+          attributes:
+            uf:
+              blank: "Ne peut être vide"
+            city:
+              blank: "Ne peut être vide"
+            street:
+              blank: "Ne peut être vide"
+            cep:
+              blank: "Ne peut être vide"
+            number:
+              blank: "Ne peut être vide"
+            neighborhood:
+              blank: "Ne peut être vide"
